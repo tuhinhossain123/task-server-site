@@ -34,6 +34,12 @@ async function run() {
         const result = taskCollection.find().toArray();
         res.send(result)
     })
+    app.get("/task/:email",  async (req, res) => {
+        const email = req.params.email;
+        const cursor = taskCollection.find({ email: email });
+        const result = await cursor.toArray();
+        res.send(result);
+      });
 
     app.post('/task', async(req, res)=>{
         const task = req.body;
